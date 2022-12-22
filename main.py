@@ -1,7 +1,7 @@
 import logging
 import pandas as pd
 from telegram import Update,Bot
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, CommandHandler
+from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, CommandHandler,JobQueue
 import datetime
 from dotenv import load_dotenv
 import pytz
@@ -48,5 +48,5 @@ if __name__ == '__main__':
     application.add_handler(start_handler)
     application.add_handler(question_handler)
     
-    job_daily = application.job_queue.run_daily(getQuestionsOnce, days=(0,1,2,3,4,5,6), time=datetime.time(hour=12, minute=20, second=00,tzinfo=asian))
+    job_daily = application.job_queue.run_daily(getQuestionsOnce, days=(0,1,2,3,4,5,6), time=datetime.time(hour=13, minute=16, second=00,tzinfo=asian))
     application.run_polling()
