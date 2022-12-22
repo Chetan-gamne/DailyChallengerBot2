@@ -47,6 +47,6 @@ if __name__ == '__main__':
     question_handler = CommandHandler('question',getQuestions)
     application.add_handler(start_handler)
     application.add_handler(question_handler)
-    j = application.job_queue
-    job_daily = j.run_daily(getQuestionsOnce, days=(0,1,2,3,4,5,6), time=datetime.time(hour=12, minute=4, second=00,tzinfo=asian))
+    
+    job_daily = application.job_queue.run_daily(getQuestionsOnce, days=(0,1,2,3,4,5,6), time=datetime.time(hour=12, minute=20, second=00,tzinfo=asian))
     application.run_polling()
