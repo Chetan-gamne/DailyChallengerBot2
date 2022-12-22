@@ -4,4 +4,4 @@ python_telegram_bot==20.0b0 --pre
 pytz==2021.1
 telegram==0.0.1
 openpyxl==3.0.10
-python-telegram-bot[job_queue]
+python-telegram-bot[job_queue]==20.0b0
