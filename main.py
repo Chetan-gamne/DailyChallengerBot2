@@ -41,12 +41,14 @@ async def main():
 
 if __name__ == '__main__':
     application = ApplicationBuilder().token(os.getenv('API_KEY')).build()
+    if(not application._job_queue):
+        application._job_queue = JobQueue()
+
     asian = pytz.timezone('Asia/Kolkata')
 
     start_handler = CommandHandler('start', start)
     question_handler = CommandHandler('question',getQuestions)
     application.add_handler(start_handler)
     application.add_handler(question_handler)
-    
-    job_daily = application.job_queue.run_daily(getQuestionsOnce, days=(0,1,2,3,4,5,6), time=datetime.time(hour=13, minute=16, second=00,tzinfo=asian))
+    job_daily = application.job_queue.run_daily(getQuestionsOnce, days=(0,1,2,3,4,5,6), time=datetime.time(hour=13, minute=31, second=00,tzinfo=asian))
     application.run_polling()
